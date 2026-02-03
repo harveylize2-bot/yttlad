@@ -1,0 +1,286 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Happy Birthday Kak Bina 💖</title>
+
+<style>
+body{
+margin:0;
+font-family:'Poppins',Arial;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80') no-repeat center/cover;
+overflow:hidden;
+}
+
+/* Overlay */
+body::before{
+content:"";
+position:absolute;
+top:0;left:0;
+width:100%;height:100%;
+background:rgba(255,255,255,0.5);
+z-index:0;
+}
+
+/* Card */
+.container{
+width:90%;
+max-width:420px;
+background:rgba(255,255,255,0.95);
+border-radius:25px;
+overflow:hidden;
+box-shadow:0 15px 35px rgba(0,0,0,0.3);
+z-index:2;
+}
+
+/* Slides */
+.slide{
+display:none;
+padding:25px;
+text-align:center;
+animation:fade 1s;
+}
+
+.slide.active{display:block;}
+
+h1,h2{color:#ff5f7e;}
+p{color:#444;line-height:1.6;font-size:15px;}
+
+img{
+width:180px;
+height:180px;
+border-radius:50%;
+object-fit:cover;
+border:5px solid #ff9a9e;
+margin:15px 0;
+animation:zoom 1.2s;
+}
+
+/* Buttons */
+.btn{
+display:flex;
+justify-content:space-between;
+padding:15px;
+}
+
+button{
+border:none;
+background:#ff5f7e;
+color:white;
+padding:8px 18px;
+border-radius:20px;
+cursor:pointer;
+transition:0.3s;
+}
+
+button:hover{
+background:#ff3f68;
+transform:scale(1.1);
+}
+
+/* Animations */
+@keyframes fade{
+from{opacity:0;transform:translateY(20px);}
+to{opacity:1;transform:translateY(0);}
+}
+
+@keyframes zoom{
+from{transform:scale(0.5);opacity:0;}
+to{transform:scale(1);opacity:1;}
+}
+
+/* Confetti */
+.confetti{
+position:fixed;
+width:8px;
+height:12px;
+background:red;
+top:-20px;
+animation:fall linear infinite;
+z-index:5;
+}
+
+@keyframes fall{
+to{
+transform:translateY(120vh) rotate(360deg);
+opacity:0;
+}
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<!-- Slide 1 -->
+<div class="slide active">
+<h2>🚪 Knock Knock!!</h2>
+<p>Abina here?! 😆✨</p>
+<button onclick="next()">Yes this is Abina</button><br><br>
+<button onclick="next()">Yes this is Sepi</button>
+</div>
+
+<!-- Slide 2 -->
+<div class="slide">
+<h2>🌊 4 Februari</h2>
+<p>
+Cieee 😆💙<br>
+14 Februari = Valentine 💝<br>
+4 Februari = Abina Day 🎉✨
+</p>
+<button onclick="next()">Lanjutt</button><br><br>
+<button onclick="next()">Yakali Ga 😝</button>
+</div>
+
+<!-- Slide 3 -->
+<div class="slide">
+<h2>🎂 Happy Birthday</h2>
+<img src="bina.Jpg" alt="Kak Bina">
+<p>
+Happy brojol day kakaku 💖<br>
+Semoga semua yang disemogakan tersemogakan 🤲✨
+</p>
+</div>
+
+<!-- Slide 4 -->
+<div class="slide">
+<h2>🥹 Dari Hati</h2>
+<p>
+Kepala 2 makin keren 😎💪<br>
+Aku bangga banget sama kamu 💕<br>
+Fans nomor 01 kamu 😘🔥
+</p>
+</div>
+
+<!-- Slide 5 -->
+<div class="slide">
+<h2>🎵 Lagu Buat Kamu</h2>
+<audio controls>
+<source src="lagu.mp3" type="audio/mpeg">
+</audio>
+<p style="font-size:12px;">(Taruh file: lagu.mp3)</p>
+</div>
+
+<!-- Slide 6 -->
+<div class="slide">
+<h2>🐟🍅 Penutup</h2>
+<p>
+Ikan hiu makan tomat 🦈🍅<br>
+Eh sejak kapan? 🤣<br>
+Ihh bodo amat 😆<br>
+I lope you so much 💖 hehehee 😘
+</p>
+</div>
+
+<!-- Buttons -->
+<div class="btn">
+<button onclick="prev()">⬅ Prev</button>
+<button onclick="next()">Next ➡</button>
+</div>
+
+</div>
+
+<script>
+let i=0;
+const slides=document.querySelectorAll(".slide");
+
+function show(){
+slides.forEach(s=>s.classList.remove("active"));
+slides[i].classList.add("active");
+}
+
+function next(){
+if(i<slides.length-1){
+i++;
+show();
+confettiBoom();
+}
+}
+
+function prev(){
+if(i>0){
+i--;
+show();
+}
+}
+
+/* Confetti Generator */
+function confettiBoom(){
+for(let i=0;i<40;i++){
+let c=document.createElement("div");
+c.className="confetti";
+c.style.left=Math.random()*100+"vw";
+c.style.background=randomColor();
+c.style.animationDuration=(Math.random()*3+2)+"s";
+document.body.appendChild(c);
+
+setTimeout(()=>{
+c.remove();
+},5000);
+}
+}
+
+function randomColor(){
+const colors=["#ff5f7e","#ffd93d","#6bcfff","#9bffb0","#c77dff"];
+return colors[Math.floor(Math.random()*colors.length)];
+}
+</script>
+<!-- PRANK VIRUS MODE -->
+<div id="virus" style="
+position:fixed;
+top:0;left:0;
+width:100%;height:100%;
+background:#8b0000;
+color:white;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+z-index:99999;
+font-family:monospace;
+text-align:center;
+">
+
+<h1>⚠️ WARNING ⚠️</h1>
+<h2>VIRUS DETECTED</h2>
+
+<p>Your device has been infected 😨</p>
+<p>Stealing personal data...</p>
+
+<h3 id="count">5</h3>
+
+<p>Do NOT close this page!</p>
+
+</div>
+
+<script>
+let time = 5;
+
+let timer = setInterval(()=>{
+  time--;
+  document.getElementById("count").innerText = time;
+
+  if(time <= 0){
+    clearInterval(timer);
+    document.getElementById("virus").innerHTML = `
+      <h1>😂 PRANKKK!!! 😂</h1>
+      <h2>Happy Birthday Kak Bina 💖🎂</h2>
+      <p>Tenang, cuma becanda 😘</p>
+      <p>Dari orang yang sayang kamu 😆💝</p>
+    `;
+
+    setTimeout(()=>{
+      document.getElementById("virus").style.display="none";
+    },3000);
+  }
+},1000);
+</script>
+
+</body>
+</html>
