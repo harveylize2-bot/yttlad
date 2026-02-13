@@ -3,113 +3,99 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<title>Happy Birthday Kak Bina 💖</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SEMESTER 4 IPS 4</title>
 
 <style>
 body{
+font-family: 'Poppins', sans-serif;
+background: linear-gradient(135deg,#1f4037,#99f2c8);
 margin:0;
-font-family:'Poppins',Arial;
-height:100vh;
-display:flex;
-justify-content:center;
-align-items:center;
-background:url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80') no-repeat center/cover;
-overflow:hidden;
+padding:20px;
+color:white;
 }
 
-/* Overlay */
-body::before{
-content:"";
-position:absolute;
-top:0;left:0;
-width:100%;height:100%;
-background:rgba(255,255,255,0.5);
-z-index:0;
-}
-
-/* Card */
 .container{
-width:90%;
-max-width:420px;
-background:rgba(255,255,255,0.95);
-border-radius:25px;
-overflow:hidden;
-box-shadow:0 15px 35px rgba(0,0,0,0.3);
-z-index:2;
+max-width:520px;
+margin:auto;
+background:white;
+color:#333;
+padding:20px;
+border-radius:20px;
+box-shadow:0 10px 30px rgba(0,0,0,0.3);
 }
 
-/* Slides */
-.slide{
-display:none;
-padding:25px;
+h1{
 text-align:center;
-animation:fade 1s;
+color:#1f4037;
 }
 
-.slide.active{display:block;}
-
-h1,h2{color:#ff5f7e;}
-p{color:#444;line-height:1.6;font-size:15px;}
-
-img{
-width:180px;
-height:180px;
-border-radius:50%;
-object-fit:cover;
-border:5px solid #ff9a9e;
-margin:15px 0;
-animation:zoom 1.2s;
+.quote{
+text-align:center;
+font-size:14px;
+margin-bottom:10px;
+color:#666;
 }
 
-/* Buttons */
-.btn{
+.date{
+text-align:center;
+font-weight:bold;
+margin-bottom:15px;
+}
+
+.section{
+margin-top:20px;
+}
+
+.task{
 display:flex;
-justify-content:space-between;
-padding:15px;
+align-items:center;
+margin:8px 0;
+background:#f2f2f2;
+padding:10px;
+border-radius:10px;
+}
+
+.progress{
+margin-top:15px;
+background:#ddd;
+border-radius:20px;
+overflow:hidden;
+}
+
+.progress-bar{
+height:20px;
+width:0%;
+background:linear-gradient(90deg,#1f4037,#99f2c8);
+text-align:center;
+color:white;
+font-size:12px;
 }
 
 button{
+margin-top:10px;
+width:100%;
+padding:10px;
 border:none;
-background:#ff5f7e;
+border-radius:10px;
+background:#1f4037;
 color:white;
-padding:8px 18px;
-border-radius:20px;
-cursor:pointer;
-transition:0.3s;
+font-weight:bold;
 }
 
-button:hover{
-background:#ff3f68;
-transform:scale(1.1);
+.streak{
+text-align:center;
+margin-top:15px;
+font-weight:bold;
+color:#1f4037;
 }
 
-/* Animations */
-@keyframes fade{
-from{opacity:0;transform:translateY(20px);}
-to{opacity:1;transform:translateY(0);}
-}
-
-@keyframes zoom{
-from{transform:scale(0.5);opacity:0;}
-to{transform:scale(1);opacity:1;}
-}
-
-/* Confetti */
-.confetti{
-position:fixed;
-width:8px;
-height:12px;
-background:red;
-top:-20px;
-animation:fall linear infinite;
-z-index:5;
-}
-
-@keyframes fall{
-to{
-transform:translateY(120vh) rotate(360deg);
-opacity:0;
-}
+input[type="number"]{
+width:100%;
+padding:8px;
+border-radius:8px;
+border:1px solid #ccc;
+margin-top:5px;
 }
 </style>
 </head>
@@ -118,168 +104,74 @@ opacity:0;
 
 <div class="container">
 
-<!-- Slide 1 -->
-<div class="slide active">
-<h2>🚪 Knock Knock!!</h2>
-<p>Abina here?! 😆✨</p>
-<button onclick="next()">Yes this is Abina</button><br><br>
-<button onclick="next()">Yes this is Sepi</button>
+<h1>🎯 SEMESTER 4 IPS 4</h1>
+<div class="quote">Konsisten kecil → IPS maksimal 💖</div>
+<div class="date" id="date"></div>
+
+<div class="section">
+<h3>📚 Checklist Harian</h3>
+
+<div class="task"><input type="checkbox" onclick="update()"> Review materi</div>
+<div class="task"><input type="checkbox" onclick="update()"> Rangkuman</div>
+<div class="task"><input type="checkbox" onclick="update()"> Cicil tugas</div>
+<div class="task"><input type="checkbox" onclick="update()"> Latihan soal</div>
+<div class="task"><input type="checkbox" onclick="update()"> Aktif di kelas</div>
+<div class="task"><input type="checkbox" onclick="update()"> Belajar fokus 30 menit</div>
+
+<div class="progress">
+<div class="progress-bar" id="bar">0%</div>
 </div>
 
-<!-- Slide 2 -->
-<div class="slide">
-<h2>🌊 4 Februari</h2>
-<p>
-Cieee 😆💙<br>
-14 Februari = Valentine 💝<br>
-4 Februari = Abina Day 🎉✨
-</p>
-<button onclick="next()">Lanjutt</button><br><br>
-<button onclick="next()">Yakali Ga 😝</button>
+<button onclick="resetChecklist()">Reset Hari Ini</button>
 </div>
 
-<!-- Slide 3 -->
-<div class="slide">
-<h2>🎂 Happy Birthday</h2>
-<img src="bina.Jpg" alt="Kak Bina">
-<p>
-Happy brojol day kakaku 💖<br>
-Semoga semua yang disemogakan tersemogakan 🤲✨
-</p>
+<div class="section">
+<h3>🏆 Target IPS</h3>
+<input type="number" placeholder="Masukkan target IPS kamu..." id="ipsInput">
+<button onclick="setTarget()">Simpan Target</button>
+<p id="ipsDisplay"></p>
 </div>
 
-<!-- Slide 4 -->
-<div class="slide">
-<h2>🥹 Dari Hati</h2>
-<p>
-Kepala 2 makin keren 😎💪<br>
-Aku bangga banget sama kamu 💕<br>
-Fans nomor 01 kamu 😘🔥
-</p>
-</div>
-
-<!-- Slide 5 -->
-<div class="slide">
-<h2>🎵 Lagu Buat Kamu</h2>
-<audio controls>
-<source src="lagu.mp3" type="audio/mpeg">
-</audio>
-<p style="font-size:12px;">(Taruh file: lagu.mp3)</p>
-</div>
-
-<!-- Slide 6 -->
-<div class="slide">
-<h2>🐟🍅 Penutup</h2>
-<p>
-Ikan hiu makan tomat 🦈🍅<br>
-Eh sejak kapan? 🤣<br>
-Ihh bodo amat 😆<br>
-I lope you so much 💖 hehehee 😘
-</p>
-</div>
-
-<!-- Buttons -->
-<div class="btn">
-<button onclick="prev()">⬅ Prev</button>
-<button onclick="next()">Next ➡</button>
+<div class="section">
+<h3>🔥 Streak Konsistensi</h3>
+<button onclick="addStreak()">Hari Produktif +1</button>
+<div class="streak" id="streak">Streak: 0 hari</div>
 </div>
 
 </div>
 
 <script>
-let i=0;
-const slides=document.querySelectorAll(".slide");
+let streak=0;
 
-function show(){
-slides.forEach(s=>s.classList.remove("active"));
-slides[i].classList.add("active");
+function update(){
+let checkboxes=document.querySelectorAll("input[type='checkbox']");
+let checked=0;
+checkboxes.forEach(c=>{ if(c.checked) checked++; });
+
+let percent=(checked/checkboxes.length)*100;
+let bar=document.getElementById("bar");
+bar.style.width=percent+"%";
+bar.innerHTML=Math.round(percent)+"%";
 }
 
-function next(){
-if(i<slides.length-1){
-i++;
-show();
-confettiBoom();
-}
+function resetChecklist(){
+document.querySelectorAll("input[type='checkbox']").forEach(c=>c.checked=false);
+update();
 }
 
-function prev(){
-if(i>0){
-i--;
-show();
-}
+function addStreak(){
+streak++;
+document.getElementById("streak").innerText="Streak: "+streak+" hari 🔥";
 }
 
-/* Confetti Generator */
-function confettiBoom(){
-for(let i=0;i<40;i++){
-let c=document.createElement("div");
-c.className="confetti";
-c.style.left=Math.random()*100+"vw";
-c.style.background=randomColor();
-c.style.animationDuration=(Math.random()*3+2)+"s";
-document.body.appendChild(c);
-
-setTimeout(()=>{
-c.remove();
-},5000);
-}
+function setTarget(){
+let val=document.getElementById("ipsInput").value;
+document.getElementById("ipsDisplay").innerText="Target IPS kamu: "+val+" 💖";
 }
 
-function randomColor(){
-const colors=["#ff5f7e","#ffd93d","#6bcfff","#9bffb0","#c77dff"];
-return colors[Math.floor(Math.random()*colors.length)];
-}
-</script>
-<!-- PRANK VIRUS MODE -->
-<div id="virus" style="
-position:fixed;
-top:0;left:0;
-width:100%;height:100%;
-background:#8b0000;
-color:white;
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-z-index:99999;
-font-family:monospace;
-text-align:center;
-">
-
-<h1>⚠️ WARNING ⚠️</h1>
-<h2>VIRUS DETECTED</h2>
-
-<p>Your device has been infected 😨</p>
-<p>Stealing personal data...</p>
-
-<h3 id="count">5</h3>
-
-<p>Do NOT close this page!</p>
-
-</div>
-
-<script>
-let time = 5;
-
-let timer = setInterval(()=>{
-  time--;
-  document.getElementById("count").innerText = time;
-
-  if(time <= 0){
-    clearInterval(timer);
-    document.getElementById("virus").innerHTML = `
-      <h1>😂 PRANKKK!!! 😂</h1>
-      <h2>Happy Birthday Kak Bina 💖🎂</h2>
-      <p>Tenang, cuma becanda 😘</p>
-      <p>Dari orang yang sayang kamu 😆💝</p>
-    `;
-
-    setTimeout(()=>{
-      document.getElementById("virus").style.display="none";
-    },3000);
-  }
-},1000);
+let today=new Date();
+document.getElementById("date").innerHTML=
+today.toLocaleDateString('id-ID',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
 </script>
 
 </body>
